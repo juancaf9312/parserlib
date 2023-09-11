@@ -21,7 +21,7 @@ namespace parserlib {
 
     /**
      * A parser context implementation.
-     * @param SourceType container with source data; 
+     * @param SourceType container with source data;
      *  must have an STL container interface;
      *  must outlive the parser context;
      *  must be immutable while being used by a parser context.
@@ -57,7 +57,7 @@ namespace parserlib {
         using RuleType = Rule<ThisType>;
 
         /**
-         * Associated rule state type. 
+         * Associated rule state type.
          */
         using RuleStateType = RuleState<ThisType>;
 
@@ -67,7 +67,7 @@ namespace parserlib {
         using MatchType = Match<SourceType, MatchIdType, PositionType>;
 
         /**
-         * Current parser state. 
+         * Current parser state.
          */
         class State {
         public:
@@ -99,12 +99,12 @@ namespace parserlib {
             const size_t m_matchCount;
 
             //constructor
-            State(const PositionType& position, const size_t matchCount) 
+            State(const PositionType& position, const size_t matchCount)
                 : m_sourcePosition(position), m_matchCount(matchCount)
             {
             }
 
-            friend class ThisType;
+            friend ThisType;
         };
 
         /**
@@ -183,7 +183,7 @@ namespace parserlib {
         }
 
         /**
-         * Increments the source position. 
+         * Increments the source position.
          */
         void incrementSourcePosition() {
             m_sourcePosition.increment();
@@ -212,7 +212,7 @@ namespace parserlib {
         bool sourceEnded() const {
             return m_sourcePosition == m_sourcePosition.end();
         }
-       
+
         /**
          * Returns the current matches.
          * @return the current matches.
@@ -285,7 +285,7 @@ namespace parserlib {
             ErrorState(size_t errorCount) : m_errorCount(errorCount) {
             }
 
-            friend class ThisType;
+            friend ThisType;
         };
 
         /**
@@ -311,15 +311,15 @@ namespace parserlib {
         const ErrorContainer<PositionType>& errors() const {
             return m_errors;
         }
-             
+
         /**
          * Adds an error.
-         * 
+         *
          * An error is added only if:
          *  - there is no error currently added.
          *  - there is no uncommitted error.
          *  - the new error happened in a position that is greater than the last uncommitted error.
-         * 
+         *
          * @param pos position that the error happened at.
          * @param ecf error creation function; it allows the creation of the error message only if needed.
          */
